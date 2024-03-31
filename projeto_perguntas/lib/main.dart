@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_perguntas/questao.dart';
 
 void main() {
   runApp(PerguntaApp());
 }
 
-class PerguntaApp extends StatelessWidget {
-  PerguntaApp({super.key});
+class _PerguntaAppState extends State<PerguntaApp> {
 
-  var perguntaSelecionada = 0;
+  var _perguntaSelecionada = 0;
 
-  void responder() {
-    perguntaSelecionada++;
-    print(perguntaSelecionada);
+  void _responder() {
+    setState(() {
+      _perguntaSelecionada++;
+    });
+    print(_perguntaSelecionada);
   }
 
   @override
@@ -28,17 +30,17 @@ class PerguntaApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(perguntas[perguntaSelecionada]),
+            Questao(perguntas[_perguntaSelecionada]),
             ElevatedButton(
-              onPressed: responder,
+              onPressed: _responder,
               child: const Text('Resposta 1'),
             ),
             ElevatedButton(
-              onPressed: responder,
+              onPressed: _responder,
               child: const Text('Resposta 2'),
             ),
             ElevatedButton(
-              onPressed: responder,
+              onPressed: _responder,
               child: const Text('Resposta 3'),
             ),
           ],
@@ -46,4 +48,13 @@ class PerguntaApp extends StatelessWidget {
       ),
     );
   }
+}
+
+class PerguntaApp extends StatefulWidget {
+  //PerguntaApp({super.key});
+
+  _PerguntaAppState createState() {
+    return _PerguntaAppState();
+  }
+
 }
